@@ -1,17 +1,16 @@
 package main
+
 import (
-  "net/http"
-  "strings"
+	"io"
+	"net/http"
 )
-func sayHello(w http.ResponseWriter, r *http.Request) {
-  message := r.URL.Path
-  message = strings.TrimPrefix(message, "/")
-  message = "Hello " + message
-  w.Write([]byte(message))
+
+func hello(w http.ResponseWriter, r *http.Request) {
+	io.WriteString(w, "Sabeehah")
 }
+
 func main() {
-  http.HandleFunc("/", sayHello)
-  if err := http.ListenAndServe(":8080", nil); err != nil {
-    panic(err)
-  }
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", hello)
+	http.ListenAndServe(":8080", mux)
 }
