@@ -1,16 +1,18 @@
+
 package main
 
 import (
-	"io"
+	"fmt"
 	"net/http"
 )
 
-func hello(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "Sabeehah")
-}
-
 func main() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", hello)
-	http.ListenAndServe(":8080", mux)
+	http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Sabeehah's Page")
+	})
+
+	fs := http.FileServer(http.Dir("static/"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
+	http.ListenAndServe(":8080", nil)
 }
