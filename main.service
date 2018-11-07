@@ -1,10 +1,10 @@
 [Unit]
-Description=Python HTTP Server
+Description=Go HTTP Server
 
 [Service]
-User=jenkins
-WorkingDirectory=/opt/golang/static
-ExecStart=/opt/golang/main.go
+User=newuser
+WorkingDirectory=/opt/main/static
+ExecStart=/opt/main/main
 
 [Install]
 WantedBy=multi-user.target

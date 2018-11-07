@@ -7,7 +7,7 @@ SERVICE_SCRIPT = /etc/systemd/system/${NAME}.service
 systemd_install:
 	@cp ${NAME}.service ${SERVICE_SCRIPT}
 	@mkdir -p ${INSTALL_LOCATION}
-	@cp main.go ${INSTALL_LOCATION}
+	@cp main ${INSTALL_LOCATION}
 	@cp -r static ${INSTALL_LOCATION}
 	@systemctl daemon-reload
 
