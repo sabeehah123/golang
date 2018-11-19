@@ -1,1 +1,6 @@
+#!/bin/bash
+git clone https://github.com/sabeehah123/golang.git /projects 
+docker rm -f $(docker ps -qa)
+docker build -t golang . 
+docker run -d -p 8080:8080 --name golang golang 
 
